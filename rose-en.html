@@ -1,0 +1,948 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROSE - Aurore Casanova</title>
+
+    <!-- Custom Fonts: Hanken Grotesk -->
+
+
+
+
+
+
+    <!-- Preload Fonts to prevent layout shift -->
+    <link rel="preload" href="./assets/fonts/hkgrotesk-regular.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="./assets/fonts/hkgrotesk-bold.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="./assets/fonts/hkgrotesk-medium.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="./assets/fonts/hkgrotesk-semibold.ttf" as="font" type="font/ttf" crossorigin>
+
+    <style>
+        /* Host fonts locally */
+        @font-face {
+            font-family: 'Hanken Grotesk';
+            src: url('./assets/fonts/hkgrotesk-regular.ttf') format('truetype');
+            font-weight: 400;
+            font-style: normal;
+            font-display: block;
+        }
+
+        @font-face {
+            font-family: 'Hanken Grotesk';
+            src: url('./assets/fonts/hkgrotesk-medium.ttf') format('truetype');
+            font-weight: 500;
+            font-style: normal;
+            font-display: block;
+        }
+
+        @font-face {
+            font-family: 'Hanken Grotesk';
+            src: url('./assets/fonts/hkgrotesk-semibold.ttf') format('truetype');
+            font-weight: 600;
+            font-style: normal;
+            font-display: block;
+        }
+
+        @font-face {
+            font-family: 'Hanken Grotesk';
+            src: url('./assets/fonts/hkgrotesk-bold.ttf') format('truetype');
+            font-weight: 700;
+            font-style: normal;
+            font-display: block;
+        }
+
+        :root {
+            --black: #000000;
+            --white: #ffffff;
+            --off-white: #f9f9f9;
+            --text-grey: #666666;
+            --font-serif: 'Hanken Grotesk', sans-serif;
+            --font-sans: 'Hanken Grotesk', sans-serif;
+            --font-nav: 'Hanken Grotesk', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--white);
+            color: var(--black);
+            font-family: var(--font-sans);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        html {
+            background-color: var(--black);
+            overflow-y: scroll;
+            overflow-y: overlay;
+        }
+
+        html::-webkit-scrollbar {
+            width: 10px;
+            background: transparent;
+        }
+
+        html::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        html::-webkit-scrollbar-thumb {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 5px;
+        }
+
+        html::-webkit-scrollbar-thumb:hover {
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        html {
+            scrollbar-width: thin;
+            scrollbar-color: rgba(0, 0, 0, 0.3) transparent;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: var(--black);
+            color: var(--white);
+            overflow: hidden;
+        }
+
+        .lang-switch {
+            font-family: var(--font-nav);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-left: 10px;
+            padding: 4px 8px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lang-switch:hover {
+            border-color: var(--white);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .copy-tooltip {
+            position: fixed;
+            background: var(--white);
+            color: var(--black);
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-family: var(--font-sans);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 10000;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .copy-tooltip.visible {
+            opacity: 1;
+        }
+
+        .header-bg-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+            filter: brightness(0.4);
+        }
+
+        .logo {
+            position: relative;
+            z-index: 2;
+            font-family: var(--font-nav);
+            font-size: 18px;
+            font-weight: 600;
+            letter-spacing: 2px;
+        }
+
+        nav {
+            position: relative;
+            z-index: 2;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+            align-items: center;
+        }
+
+        nav ul li a {
+            font-family: var(--font-nav);
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--white);
+        }
+
+        main {
+            padding-top: 60px;
+        }
+
+        .product-hero {
+            display: flex;
+            height: 52vh;
+            border-bottom: 1px solid var(--black);
+        }
+
+        .product-image-side {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            border-right: 1px solid var(--black);
+            background-color: var(--white);
+        }
+
+        .product-image-side img {
+            max-height: 47vh;
+            width: auto;
+            object-fit: contain;
+            transition: transform 0.8s cubic-bezier(0.2, 0, 0.2, 1);
+        }
+
+        .product-image-side:hover img {
+            transform: scale(1.03);
+        }
+
+        .product-info-side {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .product-info-bg-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            opacity: 0.25;
+        }
+
+        .product-title {
+            font-family: var(--font-serif);
+            font-size: 24px;
+            letter-spacing: 4px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            font-weight: 400;
+        }
+
+        .product-subtitle {
+            font-family: var(--font-sans);
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 1.3;
+            max-width: 350px;
+            margin-bottom: 10px;
+            color: var(--black);
+        }
+
+        .product-description {
+            font-family: var(--font-sans);
+            font-size: 12px;
+            line-height: 1.4;
+            max-width: 380px;
+            color: var(--black);
+            font-weight: 400;
+            opacity: 0.9;
+        }
+
+        .product-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            width: 100%;
+        }
+
+        .detail-item {
+            padding: 10px 30px;
+            border-right: 1px solid var(--black);
+            border-bottom: 1px solid var(--black);
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            height: 100px;
+            justify-content: center;
+        }
+
+        .detail-item:nth-child(even) {
+            border-right: none;
+        }
+
+        .detail-item:nth-last-child(-n+2) {
+            border-bottom: none;
+        }
+
+        .detail-title {
+            font-family: var(--font-sans);
+            font-size: 13px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--black);
+        }
+
+        .detail-content {
+            font-family: var(--font-sans);
+            font-size: 12px;
+            line-height: 1.5;
+            color: #333;
+            font-weight: 400;
+        }
+
+        .product-manifesto {
+            position: relative;
+            padding: 80px 40px;
+            text-align: center;
+            overflow: hidden;
+            border-top: 1px solid var(--black);
+            border-bottom: 1px solid var(--black);
+            min-height: 40vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: transparent;
+        }
+
+        .manifesto-bg-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+            opacity: 1;
+            filter: contrast(1.1) saturate(1.3);
+        }
+
+        .manifesto-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 0;
+        }
+
+        .manifesto-content {
+            max-width: 1000px;
+            z-index: 1;
+            padding: 20px;
+        }
+
+        .manifesto-content p {
+            font-family: var(--font-sans);
+            font-size: 32px;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--white);
+            text-transform: none;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+            will-change: opacity, transform;
+        }
+
+        .manifesto-content p.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .serif-italic {
+            font-family: var(--font-serif) !important;
+            font-style: normal;
+            font-weight: 400;
+        }
+
+        .serif-italic-underline {
+            font-family: var(--font-serif) !important;
+            font-style: normal;
+            text-decoration: underline;
+            text-underline-offset: 6px;
+            font-weight: 400;
+        }
+
+        .underline {
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+        .usage-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            width: 100%;
+            border-bottom: 1px solid var(--black);
+        }
+
+        .usage-item {
+            padding: 15px 40px;
+            border-right: 1px solid var(--black);
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .usage-item:last-child {
+            border-right: none;
+        }
+
+        .usage-title {
+            font-family: var(--font-sans);
+            font-size: 13px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .usage-content {
+            font-family: var(--font-sans);
+            font-size: 11px;
+            line-height: 1.4;
+            color: var(--black);
+            text-align: justify;
+        }
+
+        .bottle-marquee {
+            overflow: hidden;
+            background: var(--white);
+            border-bottom: 1px solid var(--black);
+        }
+
+        .marquee-wrapper {
+            display: flex;
+            width: fit-content;
+        }
+
+        .marquee-track {
+            display: flex;
+            animation: marquee-bouteilles 45s linear infinite;
+        }
+
+        .marquee-item {
+            width: 320px;
+            height: 420px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            border-right: 1px solid var(--black);
+            padding: 25px 20px 40px;
+            background: var(--white);
+            transition: background-color 0.3s;
+            gap: 20px;
+        }
+
+        .marquee-item:hover {
+            background-color: #f9f9f9;
+        }
+
+        .marquee-item img {
+            height: 280px;
+            width: auto;
+            object-fit: contain;
+            transition: transform 0.6s cubic-bezier(0.33, 1, 0.68, 1);
+            transform-origin: bottom center;
+        }
+
+        .marquee-info {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            width: 100%;
+        }
+
+        .marquee-sub {
+            font-family: var(--font-sans);
+            font-size: 9px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--black);
+        }
+
+        .marquee-title {
+            font-family: var(--font-sans);
+            font-size: 16px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--black);
+            line-height: 1;
+        }
+
+        .marquee-item a {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 20px;
+            height: 100%;
+            width: 100%;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .marquee-item:hover img {
+            transform: rotate(8deg);
+        }
+
+        @keyframes marquee-bouteilles {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        footer {
+            background-color: var(--black);
+            color: var(--white);
+            padding: 80px 20px 120px;
+            position: relative;
+            text-align: center;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 60vh;
+        }
+
+        .footer-bg-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+            opacity: 1;
+        }
+
+        .footer-map-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Topographic_map_example.png/640px-Topographic_map_example.png');
+            background-size: cover;
+            opacity: 0.1;
+            filter: invert(1);
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .footer-content {
+            position: relative;
+            z-index: 3;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0px;
+            max-width: 600px;
+        }
+
+        .footer-heart-logo {
+            width: 500px;
+            height: auto;
+            margin-bottom: -30px;
+            display: block;
+        }
+
+        .footer-brand-name {
+            font-family: var(--font-serif);
+            font-size: 24px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+        }
+
+        .footer-address {
+            font-family: var(--font-sans);
+            font-size: 13px;
+            line-height: 1.8;
+            letter-spacing: 1px;
+            font-weight: 300;
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 50px;
+            margin-top: 50px;
+            z-index: 10;
+        }
+
+        .footer-socials svg {
+            height: 24px;
+            width: auto;
+            opacity: 1;
+            transition: transform 0.3s;
+            color: var(--white);
+            fill: currentColor;
+        }
+
+        .footer-socials a:hover svg {
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            position: absolute;
+            bottom: 40px;
+            z-index: 3;
+            display: flex;
+            justify-content: space-between;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.4;
+            width: calc(100% - 40px);
+            max-width: 1200px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+        }
+
+        @media (max-width: 1024px) {
+            .usage-item {
+                padding: 40px;
+            }
+
+            .manifesto-content p {
+                font-size: 22px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 20px;
+            }
+
+            .logo {
+                font-size: 20px;
+            }
+
+            nav ul {
+                display: flex;
+                gap: 30px;
+                list-style: none;
+                align-items: center;
+            }
+
+            .product-hero {
+                flex-direction: column;
+                height: auto;
+            }
+
+            .product-image-side {
+                border-right: none;
+                border-bottom: 1px solid var(--black);
+                padding: 30px;
+                height: 50vh;
+            }
+
+            .product-info-side {
+                padding: 40px 20px;
+                min-height: 40vh;
+            }
+
+            .product-details,
+            .usage-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .detail-item,
+            .usage-item {
+                border-right: none !important;
+                border-bottom: 1px solid var(--black) !important;
+                padding: 25px 30px;
+            }
+
+            .detail-item {
+                height: auto;
+            }
+
+            .usage-item:last-child {
+                border-bottom: none !important;
+            }
+
+            .marquee-track img {
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <video autoplay muted loop playsinline class="header-bg-video">
+            <source src="assets/vid/aurore-casanova-07.mp4" type="video/mp4">
+            <source src="assets/vid/aurore-casanova-07.mov" type="video/quicktime">
+        </video>
+        <a href="index-en.html" class="logo">AC</a>
+        <nav>
+            <ul>
+                <li><a href="index-en.html#history">HISTORY</a></li>
+                <li><a href="wines.html">CHAMPAGNES & WINES</a></li>
+                <li><a href="#contact">CONTACT</a></li>
+                <li><a href="rose.html" class="lang-switch">FR</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="product-hero">
+            <div class="product-image-side">
+                <img src="assets/img/rose.png" alt="Champagne Rose">
+            </div>
+            <div class="product-info-side">
+                <video autoplay muted loop playsinline class="product-info-bg-video">
+                    <source src="assets/vid/aurore-casanova-01.mp4" type="video/mp4">
+                    <source src="assets/vid/aurore-casanova-01.mov" type="video/quicktime">
+                </video>
+                <h1 class="product-title">ROSE</h1>
+                <p class="product-subtitle">Rose offers the generosity of a gourmand champagne.</p>
+                <p class="product-description">This blend reveals the pleasure of a palate combining body, structure,
+                    and generosity.</p>
+            </div>
+        </section>
+
+        <section class="product-details">
+            <div class="detail-item">
+                <h3 class="detail-title">GRAPE VARIETIES</h3>
+                <p class="detail-content">White wine blend: 44% Chardonnay, 34% Pinot Noir, 10% Meunier. Red wine: 12%
+                    Pinot Noir aged in barrels.</p>
+            </div>
+            <div class="detail-item">
+                <h3 class="detail-title">AGING</h3>
+                <p class="detail-content">8 months in stainless steel tanks to maintain purity. Red wine perpetual
+                    reserve partly aged in barrels.</p>
+            </div>
+            <div class="detail-item">
+                <h3 class="detail-title">WINEMAKING</h3>
+                <p class="detail-content">Traditional, low-interventionist.</p>
+            </div>
+            <div class="detail-item">
+                <h3 class="detail-title">BOTTLE AGING</h3>
+                <p class="detail-content">2 to 3 years.</p>
+            </div>
+            <div class="detail-item">
+                <h3 class="detail-title">DOSAGE</h3>
+                <p class="detail-content">Extra Brut with perpetual reserve of red wine, which gives it smoothness and
+                    gourmandise.</p>
+            </div>
+            <div class="detail-item">
+                <h3 class="detail-title">TECHNICAL SHEET</h3>
+                <p class="detail-content">Energy 332Kcal/ 80kj Fat 0g (saturated 0g) Carbohydrates 1.2g (sugars <0.5g)
+                        Protein 0g Salt 0g</p>
+            </div>
+        </section>
+
+        <section class="product-manifesto">
+            <video autoplay muted loop playsinline class="manifesto-bg-video">
+                <source src="assets/vid/aurore-casanova-01.mp4" type="video/mp4">
+                <source src="assets/vid/aurore-casanova-01.mov" type="video/quicktime">
+            </video>
+            <div class="manifesto-overlay"></div>
+            <div class="manifesto-content">
+                <p>Composed of a <span class="serif-italic">blend</span> of approximately 42% Chardonnay, 30% Pinot
+                    Noir, and 12% Meunier, to which is added 16% Pinot Noir red wine, vinified partly <span
+                        class="serif-italic-underline">in oak barrels</span>.</p>
+            </div>
+        </section>
+
+        <section class="usage-grid">
+            <div class="usage-item">
+                <h3 class="usage-title">TASTING</h3>
+                <p class="usage-content">The color is pink with delicate salmon reflections. The lively nose of red
+                    fruits and juicy strawberries is enhanced by spicy notes of vanilla and cinnamon. The elegant,
+                    intense, and round mouth of wild berries, structured by the aging of the wine in oak barrels,
+                    stretches over a fine and gourmand bubble.</p>
+            </div>
+            <div class="usage-item">
+                <h3 class="usage-title">PAIRINGS</h3>
+                <p class="usage-content">This cuvée has both an aperitif and gastronomic destination. It will ideally
+                    accompany veal, lamb, Mediterranean cuisine, as well as red fruit desserts.</p>
+            </div>
+        </section>
+
+        <section class="bottle-marquee">
+            <div class="marquee-wrapper">
+                <div class="marquee-track" id="bottle-marquee-track"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contact">
+        <video autoplay muted loop playsinline class="footer-bg-video">
+            <source src="assets/vid/aurore-casanova-07.mov" type="video/quicktime">
+            <source src="assets/vid/aurore-casanova-07.mp4" type="video/mp4">
+        </video>
+        <div class="footer-map-overlay"></div>
+        <div class="footer-content">
+            <img src="assets/img/logo-coeur.png" alt="Logo Coeur"
+                class="footer-heart-logo">
+            <h2 class="footer-brand-name">AURORE CASANOVA CHAMPAGNE</h2>
+            <div class="footer-address">13 Jean Jaurès street,<br>51530 Mardeuil<br>FRANCE</div>
+            <div class="footer-socials">
+                <a href="https://www.facebook.com/champagne.aurore.casanova" target="_blank"><svg viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M12 2C6.48 2 2 6.48 2 12c0 4.99 3.66 9.12 8.44 9.88v-6.99H7.9v-2.89h2.54V9.8c0-2.51 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.77l-.44 2.89h-2.33v6.99C18.34 21.12 22 16.99 22 12c0-5.52-4.48-10-10-10z"
+                            fill="currentColor" />
+                    </svg></a>
+                <a href="https://www.instagram.com/aurorecasanovachampagne/" target="_blank"><svg viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M12 2.163c3.204 0 3.584.012 4.85.07 1.17.054 1.805.249 2.227.412.56.216.96.474 1.38.895.421.422.679.821.894 1.381.164.422.358 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.013 3.584-.07 4.85c-.055 1.17-.25 1.805-.413 2.227-.215.56-.473.96-.894 1.38-.42.42-.82.679-1.381.894-.422.164-1.057.359-2.227.413-1.266.057-1.646.07-4.85.07s-3.584-.013-4.85-.07c-1.17-.054-1.805-.249-2.227-.412-.56-.216-.96-.474-1.38-.895-.421-.422-.679-.821-.894-1.381-.164-.422-.358-1.057-.413-2.227-.057-1.266-.07-1.646-.07-4.85s.013-3.584.07-4.85c.055-1.17.25-1.805.413-2.227.215-.56.473-.96.894-1.38.42-.42.82-.679 1.381-.894.422-.164 1.057-.359 2.227-.413 1.266-.057 1.646-.07 4.85-.07zm0-2.163c-3.259 0-3.667.014-4.947.072-1.277.057-2.15.26-2.914.557a5.908 5.908 0 0 0-2.133 1.39 5.908 5.908 0 0 0-1.39 2.133c-.298.763-.501 1.637-.558 2.914-.058 1.28-.072 1.688-.072 4.947s.014 3.667.072 4.947c.057 1.277.26 2.15.558 2.914a5.908 5.908 0 0 0 1.39 2.133 5.908 5.908 0 0 0 2.133 1.39c.763.298 1.637.501 2.914.558 1.28.058 1.688.072 4.947.072s3.667-.014 4.947-.072c1.277-.057 2.15-.26 2.914-.558a5.908 5.908 0 0 0 2.133-1.39 5.908 5.908 0 0 0 1.39-2.133c.298-.763.501-1.637.558-2.914.058-1.28.072-1.688.072-4.947s-.014-3.667-.072-4.947c-.057-1.277-.26-2.15-.558-2.914a5.908 5.908 0 0 0-1.39-2.133 5.908 5.908 0 0 0-2.133-1.39c-.763-.298-1.637-.501-2.914-.558-1.28-.058-1.688-.072-4.947-.072zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zm0 10.162a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 1-2.88 0 1.44 1.44 0 0 1 2.88 0z"
+                            fill="currentColor" />
+                    </svg></a>
+                <a href="https://www.linkedin.com/company/champagne-aurore-casanova/posts/?feedView=all"
+                    target="_blank"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5V13.2a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"
+                            fill="currentColor" />
+                    </svg></a>
+                <a href="mailto:contact@aurorecasanova.com"
+                    onclick="copyEmail(event, 'contact@aurorecasanova.com')"><svg viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-1 4.5l-7 4.5-7-4.5V6l7 4.5 7-4.5v2.5z"
+                            fill="currentColor" />
+                    </svg></a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>DESIGNED & DEVELOPED BY ATELIER CEZARE</span>
+            <span>TERMS & CONDITIONS</span>
+        </div>
+    </footer>
+
+    <script>
+        const products = [
+            { name: "AURE", category: "CUVÉE", img: "assets/img/aure.png", link: "aure-en.html" },
+            { name: "ROSE", category: "CUVÉE", img: "assets/img/rose.png", link: "rose-en.html" },
+            { name: "MESNIL SUR OGER", category: "SINGLE PARCEL", img: "assets/img/parcellaire-mesnil.png", link: "mesnil-en.html" },
+            { name: "PUISIEULX CHARDONNAY", category: "SINGLE PARCEL", img: "assets/img/parcellaire-chardo.png", link: "puisieulx-chardonnay-en.html" },
+            { name: "PINOT NOIR", category: "SINGLE PARCEL", img: "assets/img/parcellaire-pinot.png", link: "puisieulx-pinot-noir-en.html" },
+            { name: "UNION GRAND CRU", category: "BLEND", img: "assets/img/assemblage-union.png", link: "tml" },
+            { name: "OGER ASSEMBLAGE", category: "GRAND CRU", img: "assets/img/chardonnay-grand-cru.png", link: "oger-assemblage-en.html" },
+            { name: "MESNIL SUR OGER", category: "COTEAUX CHAMPENOIS", img: "assets/img/coteaux-mesnil.png", link: "coteaux-mesnil-en.html" },
+            { name: "PUISIEULX", category: "COTEAUX CHAMPENOIS", img: "assets/img/coteaux-puisieulx.png", link: "coteaux-puisieulx-en.html" },
+            { name: "CHAMPVOISY", category: "COTEAUX CHAMPENOIS", img: "assets/img/coteaux-champvoisy.png", link: "coteaux-champvoisy-en.html" }
+        ];
+
+        function initMarquee() {
+            const track = document.getElementById('bottle-marquee-track');
+            const itemsHtml = products.map(p => `
+                <div class="marquee-item">
+                    <a href="${p.link}">
+                        <img src="${p.img}" alt="${p.name}">
+                        <div class="marquee-info">
+                            <span class="marquee-sub">${p.category}</span>
+                            <span class="marquee-title">${p.name}</span>
+                        </div>
+                    </a>
+                </div>
+            `).join('');
+            track.innerHTML = itemsHtml + itemsHtml;
+        }
+
+        window.addEventListener('load', () => {
+            initMarquee();
+            document.querySelectorAll('video').forEach(video => { video.playbackRate = 0.5; });
+            const manifestoVideo = document.querySelector('.manifesto-bg-video');
+            if (manifestoVideo) manifestoVideo.playbackRate = 1.0;
+            const headerVideo = document.querySelector('.header-bg-video');
+            if (headerVideo) headerVideo.playbackRate = 0.3;
+            const productInfoVideo = document.querySelector('.product-info-bg-video');
+            if (productInfoVideo) productInfoVideo.playbackRate = 0.1;
+        });
+
+        function copyEmail(e, email) {
+            e.preventDefault();
+            navigator.clipboard.writeText(email).then(() => { showTooltip(e.clientX, e.clientY); });
+        }
+
+        function showTooltip(x, y) {
+            let tooltip = document.querySelector('.copy-tooltip');
+            if (!tooltip) {
+                tooltip = document.createElement('div');
+                tooltip.className = 'copy-tooltip';
+                tooltip.textContent = 'EMAIL COPIED!';
+                document.body.appendChild(tooltip);
+            }
+            tooltip.style.left = (x + 15) + 'px';
+            tooltip.style.top = (y - 30) + 'px';
+            tooltip.classList.add('visible');
+            setTimeout(() => { tooltip.classList.remove('visible'); }, 2000);
+        }
+
+        const manifestoText = document.querySelector('.manifesto-content p');
+        if (manifestoText) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.3 });
+            observer.observe(manifestoText);
+        }
+    </script>
+</body>
+
+</html>
+
+

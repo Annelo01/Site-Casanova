@@ -1,0 +1,779 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nos Champagnes et Vins - Aurore Casanova</title>
+
+    <!-- Custom Fonts: Hanken Grotesk -->
+
+
+
+
+    <!-- Preload Fonts to prevent layout shift -->
+    <link rel="preload" href="./assets/fonts/hkgrotesk-regular.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="./assets/fonts/hkgrotesk-bold.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="./assets/fonts/hkgrotesk-medium.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="./assets/fonts/hkgrotesk-semibold.ttf" as="font" type="font/ttf" crossorigin>
+
+    <style>
+        /* Host fonts locally */
+        @font-face {
+            font-family: 'Hanken Grotesk';
+            src: url('./assets/fonts/hkgrotesk-regular.ttf') format('truetype');
+            font-weight: 400;
+            font-style: normal;
+            font-display: block;
+        }
+
+        @font-face {
+            font-family: 'Hanken Grotesk';
+            src: url('./assets/fonts/hkgrotesk-medium.ttf') format('truetype');
+            font-weight: 500;
+            font-style: normal;
+            font-display: block;
+        }
+
+        @font-face {
+            font-family: 'Hanken Grotesk';
+            src: url('./assets/fonts/hkgrotesk-semibold.ttf') format('truetype');
+            font-weight: 600;
+            font-style: normal;
+            font-display: block;
+        }
+
+        @font-face {
+            font-family: 'Hanken Grotesk';
+            src: url('./assets/fonts/hkgrotesk-bold.ttf') format('truetype');
+            font-weight: 700;
+            font-style: normal;
+            font-display: block;
+        }
+
+        :root {
+            --black: #000000;
+            --white: #ffffff;
+            --off-white: #f9f9f9;
+            --text-grey: #666666;
+            --font-serif: 'Hanken Grotesk', sans-serif;
+            --font-sans: 'Hanken Grotesk', sans-serif;
+            --font-nav: 'Hanken Grotesk', sans-serif;
+            --font-title: 'Hanken Grotesk', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--white);
+            color: var(--black);
+            font-family: var(--font-sans);
+            overflow-x: hidden;
+            -webkit-text-size-adjust: 100%;
+            /* Empêche le zoom auto du texte sur mobile */
+        }
+
+        html {
+            background-color: var(--black);
+            overflow-y: scroll;
+            /* Scrollbar overlay - ne prend pas d'espace */
+            overflow-y: overlay;
+        }
+
+        /* Scrollbar personnalisée overlay pour Chrome/Edge/Safari */
+        html::-webkit-scrollbar {
+            width: 10px;
+            background: transparent;
+        }
+
+        html::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        html::-webkit-scrollbar-thumb {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 5px;
+        }
+
+        html::-webkit-scrollbar-thumb:hover {
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        /* Firefox */
+        html {
+            scrollbar-width: thin;
+            scrollbar-color: rgba(0, 0, 0, 0.3) transparent;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* --- HEADER / NAV --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: var(--black);
+            color: var(--white);
+            overflow: hidden;
+        }
+
+        /* LANGUAGE SWITCHER */
+        .lang-switch {
+            font-family: var(--font-nav);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-left: 10px;
+            padding: 4px 8px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lang-switch:hover {
+            border-color: var(--white);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* TOOLTIP COPY EMAIL */
+        .copy-tooltip {
+            position: fixed;
+            background: var(--white);
+            color: var(--black);
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-family: var(--font-sans);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 10000;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .copy-tooltip.visible {
+            opacity: 1;
+        }
+
+        .header-bg-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+            /* Above black background */
+            filter: brightness(0.4);
+        }
+
+        .logo {
+            position: relative;
+            z-index: 2;
+            /* Above video */
+            font-family: var(--font-nav);
+            font-size: 18px;
+            font-weight: 600;
+            letter-spacing: 2px;
+        }
+
+        nav {
+            position: relative;
+            z-index: 2;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        nav ul li a {
+            font-family: var(--font-nav);
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--white);
+        }
+
+        /* --- PAGE CONTENT --- */
+        main {
+            padding-top: 60px;
+            /* Aligned with header height */
+        }
+
+        .wines-container {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            width: 100%;
+            margin-top: 0;
+            /* Espace pour le header */
+        }
+
+        .wine-item {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 30px 20px 20px;
+            border-right: 1px solid var(--black);
+            border-bottom: 1px solid var(--black);
+            transition: background-color 0.4s ease;
+            text-align: center;
+            min-height: 350px;
+            /* Rendu compact et uniforme */
+        }
+
+        .wine-item:hover {
+            background-color: #fcfcfc;
+        }
+
+        /* GRID SPANS */
+        .span-12 {
+            grid-column: span 12;
+            border-right: none;
+        }
+
+        .span-6 {
+            grid-column: span 6;
+        }
+
+        .span-4 {
+            grid-column: span 4;
+        }
+
+        /* Correction des bordures droites sur la grille de 12 */
+        .wine-item:nth-child(2),
+        /* Fin ligne 1 (2 cols) */
+        .wine-item:nth-child(5),
+        /* Fin ligne 2 (3 cols) */
+        .wine-item:nth-child(7),
+        /* Fin ligne 3 (2 cols) */
+        .wine-item:nth-child(10) {
+            /* Fin ligne 4 (3 cols) */
+            border-right: none;
+        }
+
+        .wine-image-container {
+            width: 100%;
+            height: 260px;
+            /* Augmenté de 230px pour réduire le vide */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+
+        .wine-image {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain;
+            transition: transform 0.6s cubic-bezier(0.33, 1, 0.68, 1);
+            transform-origin: bottom center;
+            /* Pivot depuis la base */
+        }
+
+        /* ANIMATION : Rotation vers la droite de 15 degrés (30 c'est beaucoup, 15 est un bon équilibre) */
+        .wine-item:hover .wine-image {
+            transform: rotate(8deg);
+        }
+
+        .wine-info {
+            width: 100%;
+        }
+
+        .wine-category {
+            font-family: var(--font-sans);
+            font-size: 9px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 8px;
+            color: #666;
+            font-weight: 600;
+        }
+
+        .wine-name {
+            font-family: var(--font-serif);
+            font-weight: 700;
+            font-size: 16px;
+            letter-spacing: 1px;
+            color: var(--black);
+            line-height: 1.2;
+            text-transform: uppercase;
+        }
+
+        /* --- MARQUEE --- */
+        .marquee {
+            background-color: var(--black);
+            color: var(--white);
+            padding: 25px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            display: flex;
+        }
+
+        .marquee-content {
+            display: inline-block;
+            animation: scroll 40s linear infinite;
+            font-family: var(--font-nav);
+            font-size: 18px;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            font-weight: 700;
+        }
+
+        @keyframes scroll {
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* --- FOOTER / CONTACT SECTION (Updated to match screenshot) --- */
+        footer {
+            background-color: var(--black);
+            color: var(--white);
+            padding: 80px 20px 120px;
+            position: relative;
+            text-align: center;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 60vh;
+        }
+
+        .footer-bg-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+            opacity: 1;
+        }
+
+        .footer-map-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Topographic_map_example.png/640px-Topographic_map_example.png');
+            background-size: cover;
+            opacity: 0.1;
+            filter: invert(1);
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .footer-content {
+            position: relative;
+            z-index: 3;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0px;
+            max-width: 600px;
+        }
+
+        .footer-heart-logo {
+            width: 500px;
+            height: auto;
+            margin-bottom: -30px;
+            display: block;
+        }
+
+        .footer-brand-name {
+            font-family: var(--font-serif);
+            font-size: 24px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+        }
+
+        .footer-address {
+            font-family: var(--font-sans);
+            font-size: 13px;
+            line-height: 1.8;
+            letter-spacing: 1px;
+            font-weight: 300;
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 50px;
+            margin-top: 50px;
+            z-index: 10;
+        }
+
+        .footer-socials svg {
+            height: 24px;
+            width: auto;
+            opacity: 1;
+            transition: transform 0.3s;
+            color: var(--white);
+            fill: currentColor;
+        }
+
+        .footer-socials a:hover svg {
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            position: absolute;
+            bottom: 40px;
+            z-index: 3;
+            display: flex;
+            justify-content: space-between;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.4;
+            width: calc(100% - 40px);
+            max-width: 1200px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+        }
+
+        /* --- MOBILE RESPONSIVE --- */
+        @media (max-width: 1024px) {
+
+            .span-6,
+            .span-4 {
+                grid-column: span 6;
+            }
+
+            .wine-item:nth-child(even) {
+                border-right: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                height: 60px;
+                padding: 15px 20px;
+            }
+
+            nav ul {
+                display: none;
+            }
+
+            .span-6,
+            .span-4,
+            .span-12 {
+                grid-column: span 12;
+                border-right: none;
+            }
+
+            .wine-item {
+                padding: 40px 20px 30px;
+                min-height: 280px;
+            }
+
+            .wine-image-container {
+                height: 270px;
+            }
+
+            .footer-nav {
+                gap: 20px;
+                flex-direction: column;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .split-section {
+                flex-direction: column;
+            }
+
+            .split-col {
+                width: 100%;
+            }
+
+            .contact-video {
+                min-height: 400px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <video autoplay muted loop playsinline class="header-bg-video">
+            <source src="assets/vid/aurore-casanova-07.mp4" type="video/mp4">
+            <source src="assets/vid/aurore-casanova-07.mov" type="video/quicktime">
+        </video>
+        <a href="index.html" class="logo">AC</a>
+        <nav>
+            <ul>
+                <li><a href="index.html#histoire">HISTOIRE</a></li>
+                <li><a href="vins.html">CHAMPAGNES & VINS</a></li>
+                <li><a href="#contact">CONTACT</a></li>
+                <li><a href="wines.html" class="lang-switch">EN</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="wines-container">
+            <!-- LIGNE 1 : 2 CASES -->
+            <a href="aure.html" class="wine-item span-6">
+                <div class="wine-image-container">
+                    <img src="assets/img/aure.png" alt="AURE" class="wine-image">
+                </div>
+                <div class="wine-info">
+                    <p class="wine-category">CUVÉE</p>
+                    <h2 class="wine-name">AURE</h2>
+                </div>
+            </a>
+
+            <a href="rose.html" class="wine-item span-6">
+                <div class="wine-image-container">
+                    <img src="assets/img/rose.png" alt="ROSE" class="wine-image">
+                </div>
+                <div class="wine-info">
+                    <p class="wine-category">CUVÉE</p>
+                    <h2 class="wine-name">ROSE</h2>
+                </div>
+            </a>
+
+            <!-- LIGNE 2 : 3 BOUTEILLES (PARCELLAIRES SELECTIONNÉS) -->
+            <a href="mesnil.html" class="wine-item span-4">
+                <div class="wine-image-container">
+                    <img src="assets/img/parcellaire-mesnil.png"
+                        alt="MESNIL SUR OGER" class="wine-image">
+                </div>
+                <div class="wine-info">
+                    <p class="wine-category">PARCELLAIRE</p>
+                    <h2 class="wine-name">MESNIL SUR OGER</h2>
+                </div>
+            </a>
+
+            <a href="puisieulx-chardonnay.html" class="wine-item span-4">
+                <div class="wine-image-container">
+                    <img src="assets/img/parcellaire-chardo.png"
+                        alt="PUISIEULX CHARDONNAY" class="wine-image">
+                </div>
+                <div class="wine-info">
+                    <p class="wine-category">PARCELLAIRE</p>
+                    <h2 class="wine-name">PUISIEULX CHARDONNAY</h2>
+                </div>
+            </a>
+
+            <a href="puisieulx-pinot-noir.html" class="wine-item span-4">
+                <div class="wine-image-container">
+                    <img src="assets/img/parcellaire-pinot.png"
+                        alt="PINOT NOIR" class="wine-image">
+                </div>
+                <div class="wine-info">
+                    <p class="wine-category">PARCELLAIRE</p>
+                    <h2 class="wine-name">PINOT NOIR</h2>
+                </div>
+            </a>
+
+            <!-- LIGNE 3 : 2 VINS (L'UNION GRAND CRU & OGER ASSEMBLAGE) -->
+            <a href="union-grand-cru.html" class="wine-item span-6">
+                <div class="wine-image-container">
+                    <img src="assets/img/assemblage-union.png"
+                        alt="UNION GRAND CRU" class="wine-image">
+                </div>
+                <div class="wine-info">
+                    <p class="wine-category">ASSEMBLAGE</p>
+                    <h2 class="wine-name">UNION GRAND CRU</h2>
+                </div>
+            </a>
+
+            <a href="oger-assemblage.html" class="wine-item span-6">
+                <div class="wine-image-container">
+                    <img src="assets/img/chardonnay-grand-cru.png"
+                        alt="OGER ASSEMBLAGE" class="wine-image">
+                </div>
+                <div class="wine-info">
+                    <p class="wine-category">PARCELLAIRE</p>
+                    <h2 class="wine-name">OGER ASSEMBLAGE</h2>
+                </div>
+            </a>
+
+            <!-- LIGNE 4 : 3 BOUTEILLES (COTEAUX CHAMPENOIS) -->
+            <a href="coteaux-mesnil.html" class="wine-item span-4">
+                <div class="wine-image-container">
+                    <img src="assets/img/coteaux-mesnil.png"
+                        alt="MESNIL SUR OGER" class="wine-image">
+                </div>
+                <div class="wine-info">
+                    <p class="wine-category">COTEAUX CHAMPENOIS</p>
+                    <h2 class="wine-name">MESNIL SUR OGER</h2>
+                </div>
+            </a>
+
+            <a href="coteaux-puisieulx.html" class="wine-item span-4">
+                <div class="wine-image-container">
+                    <img src="assets/img/coteaux-puisieulx.png"
+                        alt="PUISIEULX" class="wine-image">
+                </div>
+                <div class="wine-info">
+                    <p class="wine-category">COTEAUX CHAMPENOIS</p>
+                    <h2 class="wine-name">PUISIEULX</h2>
+                </div>
+            </a>
+
+            <a href="coteaux-champvoisy.html" class="wine-item span-4">
+                <div class="wine-image-container">
+                    <img src="assets/img/coteaux-champvoisy.png"
+                        alt="CHAMPVOISY" class="wine-image">
+                </div>
+                <div class="wine-info">
+                    <p class="wine-category">COTEAUX CHAMPENOIS</p>
+                    <h2 class="wine-name">CHAMPVOISY</h2>
+                </div>
+            </a>
+        </section>
+
+        <!-- MARQUEE -->
+        <div class="marquee">
+            <div class="marquee-content" id="marquee-footer">
+                INFORMATIONS • CONTACT • INFORMATIONS • CONTACT • INFORMATIONS • CONTACT • INFORMATIONS • CONTACT •
+                INFORMATIONS • CONTACT • INFORMATIONS • CONTACT •
+            </div>
+        </div>
+        <!-- FOOTER / CONTACT -->
+        <footer id="contact">
+            <!-- Asset Video from CONTACT folder used as atmospheric background -->
+            <video autoplay muted loop playsinline class="footer-bg-video">
+                <source src="assets/vid/aurore-casanova-07.mov" type="video/quicktime">
+                <source src="assets/vid/aurore-casanova-07.mp4" type="video/mp4">
+            </video>
+            <div class="footer-map-overlay"></div>
+
+            <div class="footer-content">
+                <img src="assets/img/logo-coeur.png" alt="Logo Coeur"
+                    class="footer-heart-logo">
+
+                <h2 class="footer-brand-name">AURORE CASANOVA CHAMPAGNE</h2>
+
+                <div class="footer-address">
+                    13 rue Jean Jaurès,<br>
+                    51530 Mardeuil<br>
+                    FRANCE
+                </div>
+
+                <div class="footer-socials">
+                    <a href="https://www.facebook.com/champagne.aurore.casanova" target="_blank">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M12 2C6.48 2 2 6.48 2 12c0 4.99 3.66 9.12 8.44 9.88v-6.99H7.9v-2.89h2.54V9.8c0-2.51 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.77l-.44 2.89h-2.33v6.99C18.34 21.12 22 16.99 22 12c0-5.52-4.48-10-10-10z"
+                                fill="currentColor" />
+                        </svg>
+                    </a>
+                    <a href="https://www.instagram.com/aurorecasanovachampagne/" target="_blank">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M12 2.163c3.204 0 3.584.012 4.85.07 1.17.054 1.805.249 2.227.412.56.216.96.474 1.38.895.421.422.679.821.894 1.381.164.422.358 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.013 3.584-.07 4.85c-.055 1.17-.25 1.805-.413 2.227-.215.56-.473.96-.894 1.38-.42.42-.82.679-1.381.894-.422.164-1.057.359-2.227.413-1.266.057-1.646.07-4.85.07s-3.584-.013-4.85-.07c-1.17-.054-1.805-.249-2.227-.412-.56-.216-.96-.474-1.38-.895-.421-.422-.679-.821-.894-1.381-.164-.422-.358-1.057-.413-2.227-.057-1.266-.07-1.646-.07-4.85s.013-3.584.07-4.85c.055-1.17.25-1.805.413-2.227.215-.56.473-.96.894-1.38.42-.42.82-.679 1.381-.894.422-.164 1.057-.359 2.227-.413 1.266-.057 1.646-.07 4.85-.07zm0-2.163c-3.259 0-3.667.014-4.947.072-1.277.057-2.15.26-2.914.557a5.908 5.908 0 0 0-2.133 1.39 5.908 5.908 0 0 0-1.39 2.133c-.298.763-.501 1.637-.558 2.914-.058 1.28-.072 1.688-.072 4.947s.014 3.667.072 4.947c.057 1.277.26 2.15.558 2.914a5.908 5.908 0 0 0 1.39 2.133 5.908 5.908 0 0 0 2.133 1.39c.763.298 1.637.501 2.914.558 1.28.058 1.688.072 4.947.072s3.667-.014 4.947-.072c1.277-.057 2.15-.26 2.914-.558a5.908 5.908 0 0 0 2.133-1.39 5.908 5.908 0 0 0 1.39-2.133c.298-.763.501-1.637.558-2.914.058-1.28.072-1.688.072-4.947s-.014-3.667-.072-4.947c-.057-1.277-.26-2.15-.558-2.914a5.908 5.908 0 0 0-1.39-2.133 5.908 5.908 0 0 0-2.133-1.39c-.763-.298-1.637-.501-2.914-.558-1.28-.058-1.688-.072-4.947-.072zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zm0 10.162a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 1-2.88 0 1.44 1.44 0 0 1 2.88 0z"
+                                fill="currentColor" />
+                        </svg>
+                    </a>
+                    <a href="https://www.linkedin.com/company/champagne-aurore-casanova/posts/?feedView=all"
+                        target="_blank">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5V13.2a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"
+                                fill="currentColor" />
+                        </svg>
+                    </a>
+                    <a href="mailto:contact@aurorecasanova.com"
+                        onclick="copyEmail(event, 'contact@aurorecasanova.com')">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-1 4.5l-7 4.5-7-4.5V6l7 4.5 7-4.5v2.5z"
+                                fill="currentColor" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <span>DESIGNED & DEVELOPED BY ATELIER CEZARE</span>
+                <span>TERMS & CONDITIONS</span>
+            </div>
+        </footer>
+    </main>
+
+    <script>
+        // Script simple pour dupliquer le contenu du marquee pour qu'il soit assez long
+        document.querySelectorAll('.marquee-content').forEach(marquee => {
+            const content = marquee.innerHTML;
+            marquee.innerHTML = content + content + content + content;
+        });
+
+        // Ralentir les vidéos à 50% de leur vitesse
+        window.addEventListener('load', () => {
+            document.querySelectorAll('video').forEach(video => {
+                video.playbackRate = 0.5; // 0.5 = moitié de la vitesse normale
+            });
+        });
+
+        // COPY EMAIL FUNCTION
+        function copyEmail(e, email) {
+            e.preventDefault();
+            navigator.clipboard.writeText(email).then(() => {
+                showTooltip(e.clientX, e.clientY);
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+            });
+        }
+
+        function showTooltip(x, y) {
+            let tooltip = document.querySelector('.copy-tooltip');
+            if (!tooltip) {
+                tooltip = document.createElement('div');
+                tooltip.className = 'copy-tooltip';
+                tooltip.textContent = 'EMAIL COPIÉ !';
+                document.body.appendChild(tooltip);
+            }
+            // Positionner au-dessus du curseur
+            tooltip.style.left = (x + 15) + 'px';
+            tooltip.style.top = (y - 30) + 'px';
+            tooltip.classList.add('visible');
+
+            setTimeout(() => {
+                tooltip.classList.remove('visible');
+            }, 2000);
+        }
+    </script>
+</body>
+
+</html>
+
+
