@@ -584,23 +584,25 @@
         footer {
             background-color: var(--black);
             color: var(--white);
-            padding: 80px 20px 120px;
+            padding: 40px 20px 50px;
             position: relative;
             text-align: center;
             overflow: hidden;
             display: flex;
             flex-direction: column;
             align-items: center;
-            min-height: 60vh;
+            justify-content: center;
+            min-height: 30vh;
         }
 
         .footer-bg-video {
             position: absolute;
             top: 0;
-            left: 0;
-            width: 100%;
+            left: -5%;
+            width: 110%;
             height: 100%;
             object-fit: cover;
+            object-position: center center;
             z-index: 1;
             opacity: 1;
         }
@@ -630,9 +632,9 @@
         }
 
         .footer-heart-logo {
-            width: 500px;
+            width: 190px;
             height: auto;
-            margin-bottom: -30px;
+            margin: 100px auto 30px auto;
             display: block;
         }
 
@@ -647,8 +649,8 @@
 
         .footer-address {
             font-family: var(--font-sans);
-            font-size: 13px;
-            line-height: 1.8;
+            font-size: 10px;
+            line-height: 1.6;
             letter-spacing: 1px;
             font-weight: 300;
         }
@@ -1098,10 +1100,7 @@
             <div class="footer-map-overlay"></div>
 
             <div class="footer-content">
-                <img src="assets/img/logo-coeur.png" alt="Logo Coeur"
-                    class="footer-heart-logo">
-
-                <h2 class="footer-brand-name">AURORE CASANOVA CHAMPAGNE</h2>
+                <img src="assets/img/logo svg footpage.svg" alt="Aurore Casanova Champagne" class="footer-heart-logo">
 
                 <div class="footer-address">
                     13 rue Jean Jaurès,<br>
@@ -1146,17 +1145,14 @@
                 </div>
             </div>
 
-            <div class="footer-bottom">
-                <span>DESIGNED & DEVELOPED BY ATELIER CEZARE</span>
-                <span>TERMS & CONDITIONS</span>
-            </div>
+            
         </footer>
 
         <script>
             // Ralentir les vidéos à 50% de leur vitesse
             window.addEventListener('load', () => {
                 document.querySelectorAll('video').forEach(video => {
-                    video.playbackRate = 0.5; // 0.5 = moitié de la vitesse normale
+                    video.playbackRate = 0.8; // 0.5 = moitié de la vitesse normale
                 });
 
                 // Specific adjustment for this page background video if needed

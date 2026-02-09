@@ -436,10 +436,10 @@
 
         .text-block {
             font-family: var(--font-sans);
-            font-size: 12px;
+            font-size: 10.5px;
             /* Remonté car 10px c'est illisible */
             line-height: 1.5;
-            color: var(--text-grey);
+            color: var(--black);
             margin-bottom: 12px;
             text-align: center;
             font-weight: 400;
@@ -460,13 +460,12 @@
             font-weight: 400;
         }
 
-        /* Specific padding adjustments to balance heights */
         .split-content-small {
             padding: 20px 40px !important;
         }
 
         .split-content-large {
-            padding: 80px 40px !important;
+            padding: 50px 40px !important;
         }
 
         /* --- PHILOSOPHY SECTION (MAP BACKGROUND) --- */
@@ -545,7 +544,7 @@
         /* --- BARRELS IMAGE --- */
         .full-width-image {
             width: 100%;
-            height: 66vh;
+            height: 80vh;
             /* Agrandit x2 (était 33vh) */
             object-fit: cover;
             display: block;
@@ -659,9 +658,10 @@
 
         .footer-address {
             font-family: var(--font-sans);
-            font-size: 12px;
+            font-size: 10px;
             line-height: 1.6;
             letter-spacing: 1px;
+            font-weight: 300;
         }
 
         .social-icons {
@@ -699,26 +699,27 @@
         footer {
             background-color: var(--black);
             color: var(--white);
-            padding: 53px 13px 80px;
+            padding: 40px 20px 50px;
             position: relative;
             text-align: center;
             overflow: hidden;
             display: flex;
             flex-direction: column;
             align-items: center;
-            min-height: 40vh;
+            justify-content: center;
+            min-height: 30vh;
         }
 
         .footer-bg-video {
             position: absolute;
             top: 0;
-            left: 0;
-            width: 100%;
+            left: -5%;
+            width: 110%;
             height: 100%;
             object-fit: cover;
+            object-position: center center;
             z-index: 1;
             opacity: 1;
-            /* Full visibility */
         }
 
         .footer-map-overlay {
@@ -746,9 +747,9 @@
         }
 
         .footer-heart-logo {
-            width: 333px;
+            width: 190px;
             height: auto;
-            margin-bottom: -20px;
+            margin: 100px auto 30px auto;
             display: block;
         }
 
@@ -763,8 +764,8 @@
 
         .footer-address {
             font-family: var(--font-sans);
-            font-size: 13px;
-            line-height: 1.8;
+            font-size: 10px;
+            line-height: 1.6;
             letter-spacing: 1px;
             font-weight: 300;
         }
@@ -901,29 +902,27 @@
             <div class="split-content split-content-small">
                 <h2 class="section-title">LE VIGNOBLE</h2>
                 <div class="text-block">
-                    <p>Notre valeur fondatrice est le respect de l'environnement et de toute forme de vie pour que nos
-                        vignes atteignent leur équilibre
-                        pour concevoir de bon raisins. Le Domaine Aurore CASANOVA, respectueux de l'environnement et de
-                        toute forme de vie a été
-                        créé en 2013 par Aurore et Jean-Baptiste.</p>
+                    <p>Notre valeur fondatrice est le respect de l'environnement et de toute forme de vie pour trouver
+                        l'équilibre de nos vignes et de cueillir de bon raisins.</p>
 
-                    <p>Il repose sur des terroirs singuliers : <a href="#">Puisieulx. Grand cru de la Montagne de
-                            Reims</a>: principalement des Pinots Noirs (de
+                    <p>Il repose sur des terroirs singuliers :</p>
+
+                    <p><a href="#">Puisieulx, grand cru la Montagne de Reims</a>: principalement des Pinots Noirs (de
                         sélection massale ou de clones) et des Chardonnays qui se développent sur des limons reposants
                         sur calcaire dur.</p>
 
-                    <p><a href="#">Le Mesnil-sur-Oger et Oger</a> deux grands crus de la <a href="#">Côte des Blancs</a>
-                        avec 22
-                        parcelles avec presque autant d'expositions! Un point commun cependant, le Chardonnay sur un
-                        sous-sol crayeux avec des terres fines brunes ou des colluvions crayeuses en surface.</p>
+                    <p><a href="#">Le Mesnil-sur-Oger et Oger grands crus de la Côte des Blancs</a>: 22 parcelles avec
+                        presque autant d'expositions! Un point commun cependant, le Chardonnay sur un sous-sol crayeux
+                        avec des terres fines brunes ou des colluvions crayeuses en surface.</p>
 
-                    <p><a href="#">Champvoisy</a> et Vauciennes dans la <a href="#">Vallée de la Marne:</a> un sol brun
-                        de Marne
-                        sur calcaire dur qui laisse s'exprimer le Meunier.</p>
+                    <p><a href="#">Champvoisy dans la Vallée de la Marne</a> et son sol brun de Marne sur calcaire dur
+                        qui laisse s'exprimer le Meunier, et Vauciennes où le Meunier et le Pinot Noir s'épanouissent.
+                    </p>
 
-                    <p><a href="#">Epernay</a> la capitale du Champagne et le chardonnay des coteaux sud.<br>
-                        Cette pluralité de terroirs et de cépages est sublimée grâce à l'observation attentive et la
-                        contemplation qui guide Aurore et JB tant à la vigne qu'au chai.</p>
+                    <p><a href="#">Epernay</a> la capitale du Champagne et son Chardonnay sur les coteaux sud.</p>
+
+                    <p>Cette pluralité de terroirs et de cépages est sublimée grâce à l'observation attentive et la
+                        contemplation minutieuse qui guide Aurore et Jean-Baptiste tant à la vigne qu'au chai.</p>
                 </div>
             </div>
         </div>
@@ -939,18 +938,24 @@
             <div class="split-content split-content-large">
                 <h2 class="section-title">AURORE & JEAN-BAPTISTE</h2>
                 <div class="text-block">
-                    <p>Je suis Aurore CASANOVA, fille de viticultrice et d'informaticien. J'ai grandi à Paris où j'ai
+                    <p>Je suis Aurore CASANOVA, fille de viticultrice et d’informaticien, j’ai grandi à Paris où j’ai
                         fait un sport étude pour être ensuite danseuse classique professionnellement pendant 7 ans à
-                        l'étranger.</p>
+                        l’étranger.</p>
 
-                    <p>Je suis Jean-Baptiste ROBINET, issu d'une famille vigneronne. J'ai grandi en Champagne et j'ai
+                    <p>Je suis Jean-Baptiste ROBINET, issu d’une famille vigneronne, j’ai grandi en Champagne et j’ai
                         travaillé dans le paramédical en concevant un pied prothétique en carbone pour les personnes
                         amputées.</p>
 
-                    <p>On s'est rencontrés en 2011 pendant notre formation de viticulture et d'oenologie à Avize en
+                    <p>On s’est rencontrés en 2011 pendant notre formation de viticulture et d’œnologie à Avize en
                         Champagne. Lors de son apprentissage de 2 ans chez Fabrice Pouillon, JB a pu voir pour la
                         première fois des fermentations indigènes en fûts, observer le travail du sol et passer ses
                         premières charrues.</p>
+
+                    <p>On a commencé par louer des parcelles familiales, notre tâche en les observant, en les
+                        contemplant est de comprendre chaque parcelle son développement et son biotope pour faire
+                        évoluer les pratiques vers une viticulture alternative, pour récolter un fruit mûr et concentré.
+                        Puis en les vinifiant on sublime chaque parcelle et son identité pour les donner à voir et à
+                        goûter aux plus curieux.</p>
                 </div>
             </div>
         </div>
@@ -990,8 +995,8 @@
     <!-- MARQUEE PRESSE -->
     <div class="marquee">
         <div class="marquee-content">
-            LA PRESSE EN PARLE • LA PRESSE EN PARLE • LA PRESSE EN PARLE • LA PRESSE EN PARLE • LA PRESSE EN PARLE • LA
-            PRESSE EN PARLE •
+            LA PHILOSOPHIE CASANOVA • LA PHILOSOPHIE CASANOVA • LA PHILOSOPHIE CASANOVA • LA PHILOSOPHIE CASANOVA • LA
+            PHILOSOPHIE CASANOVA • LA PHILOSOPHIE CASANOVA •
         </div>
     </div>
 
@@ -1038,9 +1043,7 @@
         <div class="footer-map-overlay"></div>
 
         <div class="footer-content">
-            <img src="assets/img/logo-coeur.png" alt="Logo Coeur" class="footer-heart-logo">
-
-            <h2 class="footer-brand-name">AURORE CASANOVA CHAMPAGNE</h2>
+            <img src="assets/img/logo svg footpage.svg" alt="Aurore Casanova Champagne" class="footer-heart-logo">
 
             <div class="footer-address">
                 13 rue Jean Jaurès,<br>
@@ -1081,10 +1084,7 @@
             </div>
         </div>
 
-        <div class="footer-bottom">
-            <span>DESIGNED & DEVELOPED BY ATELIER CEZARE</span>
-            <span>TERMS & CONDITIONS</span>
-        </div>
+
     </footer>
 
     <script>
@@ -1097,7 +1097,7 @@
         // Ralentir les vidéos à 50% de leur vitesse
         window.addEventListener('load', () => {
             document.querySelectorAll('video').forEach(video => {
-                video.playbackRate = 0.5; // 0.5 = moitié de la vitesse normale
+                video.playbackRate = 0.8; // 0.5 = moitié de la vitesse normale
             });
         });
 

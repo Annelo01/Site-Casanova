@@ -578,23 +578,25 @@
         footer {
             background-color: var(--black);
             color: var(--white);
-            padding: 80px 20px 120px;
+            padding: 40px 20px 50px;
             position: relative;
             text-align: center;
             overflow: hidden;
             display: flex;
             flex-direction: column;
             align-items: center;
-            min-height: 60vh;
+            justify-content: center;
+            min-height: 30vh;
         }
 
         .footer-bg-video {
             position: absolute;
             top: 0;
-            left: 0;
-            width: 100%;
+            left: -5%;
+            width: 110%;
             height: 100%;
             object-fit: cover;
+            object-position: center center;
             z-index: 1;
             opacity: 1;
         }
@@ -624,9 +626,9 @@
         }
 
         .footer-heart-logo {
-            width: 500px;
+            width: 190px;
             height: auto;
-            margin-bottom: -30px;
+            margin: 100px auto 30px auto;
             display: block;
         }
 
@@ -641,8 +643,8 @@
 
         .footer-address {
             font-family: var(--font-sans);
-            font-size: 13px;
-            line-height: 1.8;
+            font-size: 10px;
+            line-height: 1.6;
             letter-spacing: 1px;
             font-weight: 300;
         }
@@ -1060,10 +1062,7 @@
         <div class="footer-map-overlay"></div>
 
         <div class="footer-content">
-            <img src="assets/img/logo-coeur.png" alt="Logo Coeur"
-                class="footer-heart-logo">
-
-            <h2 class="footer-brand-name">AURORE CASANOVA CHAMPAGNE</h2>
+            <img src="assets/img/logo svg footpage.svg" alt="Aurore Casanova Champagne" class="footer-heart-logo">
 
             <div class="footer-address">
                 13 rue Jean Jaurès,<br>
@@ -1104,16 +1103,13 @@
             </div>
         </div>
 
-        <div class="footer-bottom">
-            <span>DESIGNED & DEVELOPED BY ATELIER CEZARE</span>
-            <span>TERMS & CONDITIONS</span>
-        </div>
+        
     </footer>
     <script>
         window.addEventListener('load', () => {
             // Video default slow speed
             document.querySelectorAll('video').forEach(video => {
-                video.playbackRate = 0.5; // Slightly faster base speed for smoothness, or keep 0.1 if desired for others
+                video.playbackRate = 0.8; // Slightly faster base speed for smoothness, or keep 0.1 if desired for others
             });
 
             // Manifesto video: adjusted speed
@@ -1130,7 +1126,7 @@
             if (productInfoVideo) productInfoVideo.playbackRate = 0.1; // Keep cloud slow? User didn't specify, but "remets la" implies just restore. Slow is fine.
 
             const footerVideo = document.querySelector('.footer-bg-video');
-            if (footerVideo) footerVideo.playbackRate = 0.5;
+            if (footerVideo) footervideo.playbackRate = 0.8;
         });
 
         // COPY EMAIL FUNCTION

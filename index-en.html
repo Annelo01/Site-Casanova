@@ -393,7 +393,7 @@
             display: block;
         }
 
-        /* Adjustment for Vineyard photo - Full size */
+        /* Adjustment for Vignoble photo - Full size */
         .vignoble-img {
             width: 100% !important;
             height: 100% !important;
@@ -435,10 +435,10 @@
 
         .text-block {
             font-family: var(--font-sans);
-            font-size: 12px;
+            font-size: 10.5px;
             /* Remonté car 10px c'est illisible */
             line-height: 1.5;
-            color: var(--text-grey);
+            color: var(--black);
             margin-bottom: 12px;
             text-align: center;
             font-weight: 400;
@@ -459,13 +459,12 @@
             font-weight: 400;
         }
 
-        /* Specific padding adjustments to balance heights */
         .split-content-small {
             padding: 20px 40px !important;
         }
 
         .split-content-large {
-            padding: 80px 40px !important;
+            padding: 50px 40px !important;
         }
 
         /* --- PHILOSOPHY SECTION (MAP BACKGROUND) --- */
@@ -530,7 +529,7 @@
         /* --- BARRELS IMAGE --- */
         .full-width-image {
             width: 100%;
-            height: 66vh;
+            height: 80vh;
             /* Agrandit x2 (était 33vh) */
             object-fit: cover;
             display: block;
@@ -644,9 +643,10 @@
 
         .footer-address {
             font-family: var(--font-sans);
-            font-size: 12px;
+            font-size: 10px;
             line-height: 1.6;
             letter-spacing: 1px;
+            font-weight: 300;
         }
 
         .social-icons {
@@ -684,26 +684,27 @@
         footer {
             background-color: var(--black);
             color: var(--white);
-            padding: 53px 13px 80px;
+            padding: 40px 20px 50px;
             position: relative;
             text-align: center;
             overflow: hidden;
             display: flex;
             flex-direction: column;
             align-items: center;
-            min-height: 40vh;
+            justify-content: center;
+            min-height: 30vh;
         }
 
         .footer-bg-video {
             position: absolute;
             top: 0;
-            left: 0;
-            width: 100%;
+            left: -5%;
+            width: 110%;
             height: 100%;
             object-fit: cover;
+            object-position: center center;
             z-index: 1;
             opacity: 1;
-            /* Full visibility */
         }
 
         .footer-map-overlay {
@@ -731,9 +732,9 @@
         }
 
         .footer-heart-logo {
-            width: 333px;
+            width: 190px;
             height: auto;
-            margin-bottom: -20px;
+            margin: 100px auto 30px auto;
             display: block;
         }
 
@@ -748,8 +749,8 @@
 
         .footer-address {
             font-family: var(--font-sans);
-            font-size: 13px;
-            line-height: 1.8;
+            font-size: 10px;
+            line-height: 1.6;
             letter-spacing: 1px;
             font-weight: 300;
         }
@@ -884,24 +885,27 @@
             <div class="split-content split-content-small">
                 <h2 class="section-title">THE VINEYARD</h2>
                 <div class="text-block">
-                    <p>Our founding value is the respect for the environment and all forms of life so that our vines
-                        reach their balance to produce great grapes. Domaine Aurore CASANOVA, respectful of the
-                        environment and all life forms, was created in 2013 by Aurore and Jean-Baptiste.</p>
+                    <p>Our founding value is respect for the environment and all forms of life to find the balance of
+                        our vines and harvest good grapes.</p>
 
-                    <p>It rests on singular terroirs: <a href="#">Puisieulx, Grand Cru of the Montagne de Reims</a>:
-                        mainly Pinot Noirs (massal selection or clones) and Chardonnays growing on silts resting on hard
-                        limestone.</p>
+                    <p>It rests on singular terroirs:</p>
 
-                    <p><a href="#">Le Mesnil-sur-Oger and Oger</a>, two Grands Crus of the <a href="#">Côte des
-                            Blancs</a> with 22 parcels and almost as many exposures! A common point, however: Chardonnay
-                        on a chalky subsoil with fine brown earth or chalky colluvium on the surface.</p>
+                    <p><a href="#">Puisieulx, Grand Cru Montagne de Reims</a>: mainly Pinot Noirs (massal selection or
+                        clones) and Chardonnays growing on silts resting on hard limestone.</p>
 
-                    <p><a href="#">Champvoisy</a> and Vauciennes in the <a href="#">Marne Valley</a>: brown marl soil on
-                        hard limestone that allows Meunier to express itself.</p>
+                    <p><a href="#">Le Mesnil-sur-Oger and Oger Grand Crus of the Côte des Blancs</a>: 22 plots with
+                        almost as many exposures! One common point however, Chardonnay on a chalky subsoil with fine
+                        brown earths or chalky colluvium on the surface.</p>
 
-                    <p><a href="#">Epernay</a>, the capital of Champagne, and Chardonnay from the southern slopes.<br>
-                        This plurality of terroirs and grape varieties is enhanced by the careful observation and
-                        contemplation that guide Aurore and JB both in the vineyard and the cellar.</p>
+                    <p><a href="#">Champvoisy in the Vallée de la Marne</a> and its brown Marne soil on hard limestone
+                        allowing the Meunier to express itself, and Vauciennes where Meunier and Pinot Noir flourish.
+                    </p>
+
+                    <p><a href="#">Epernay</a> the capital of Champagne and its Chardonnay on the southern slopes.</p>
+
+                    <p>This plurality of terroirs and grape varieties is enhanced thanks to the attentive observation
+                        and meticulous contemplation that guide Aurore and Jean-Baptiste both in the vineyard and in the
+                        cellar.</p>
                 </div>
             </div>
         </div>
@@ -916,16 +920,21 @@
             <div class="split-content split-content-large">
                 <h2 class="section-title">AURORE & JEAN-BAPTISTE</h2>
                 <div class="text-block">
-                    <p>I am Aurore CASANOVA, daughter of a winemaker and a computer scientist. I grew up in Paris where
+                    <p>I am Aurore CASANOVA, daughter of a winegrower and a computer scientist, I grew up in Paris where
                         I followed a sport-study program to become a professional classical dancer for 7 years abroad.
                     </p>
 
-                    <p>I am Jean-Baptiste ROBINET, from a winemaking family. I grew up in Champagne and worked in the
-                        paramedical field, designing a carbon prosthetic foot for amputees.</p>
+                    <p>I am Jean-Baptiste ROBINET, from a winemaking family, I grew up in Champagne and worked in the
+                        paramedical field designing a carbon prosthetic foot for amputees.</p>
 
-                    <p>We met in 2011 during our viticulture and oenology training in Avize, Champagne. During his
-                        2-year apprenticeship with Fabrice Pouillon, JB saw indigenous fermentations in barrels for the
-                        first time, observed soil work, and used his first plows.</p>
+                    <p>We met in 2011 during our viticulture and oenology training in Avize in Champagne. During his
+                        2-year apprenticeship with Fabrice Pouillon, JB was able to see indigenous fermentations in
+                        barrels for the first time, observe soil work and use his first plows.</p>
+
+                    <p>We started by renting family plots, our task in observing and contemplating them is to understand
+                        each plot, its development and its biotope to evolve practices towards alternative viticulture,
+                        to harvest ripe and concentrated fruit. Then by vinifying them we sublimate each plot and its
+                        identity to reveal them and offer them to be tasted by the most curious.</p>
                 </div>
             </div>
         </div>
@@ -962,8 +971,8 @@
     <!-- MARQUEE PRESS -->
     <div class="marquee">
         <div class="marquee-content">
-            THE PRESS TALKS ABOUT US • THE PRESS TALKS ABOUT US • THE PRESS TALKS ABOUT US • THE PRESS TALKS ABOUT US •
-            THE PRESS TALKS ABOUT US • THE PRESS TALKS ABOUT US •
+            CASANOVA PHILOSOPHY • CASANOVA PHILOSOPHY • CASANOVA PHILOSOPHY • CASANOVA PHILOSOPHY • CASANOVA PHILOSOPHY
+            • CASANOVA PHILOSOPHY •
         </div>
     </div>
 
@@ -1005,9 +1014,7 @@
         <div class="footer-map-overlay"></div>
 
         <div class="footer-content">
-            <img src="assets/img/logo-coeur.png" alt="Logo Coeur" class="footer-heart-logo">
-
-            <h2 class="footer-brand-name">AURORE CASANOVA CHAMPAGNE</h2>
+            <img src="assets/img/logo svg footpage.svg" alt="Aurore Casanova Champagne" class="footer-heart-logo">
 
             <div class="footer-address">
                 13 Jean Jaurès street,<br>
@@ -1048,10 +1055,7 @@
             </div>
         </div>
 
-        <div class="footer-bottom">
-            <span>DESIGNED & DEVELOPED BY ATELIER CEZARE</span>
-            <span>TERMS & CONDITIONS</span>
-        </div>
+
     </footer>
 
     <script>
@@ -1064,7 +1068,7 @@
         // Slow down videos to 50%
         window.addEventListener('load', () => {
             document.querySelectorAll('video').forEach(video => {
-                video.playbackRate = 0.5;
+                video.playbackRate = 0.8;
             });
         });
 
