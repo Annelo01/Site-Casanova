@@ -461,6 +461,14 @@
             max-width: 400px;
         }
 
+        .mobile-menu ul {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            text-align: center;
+            list-style: none;
+        }
+
         .footer-heart-logo {
             width: 190px;
             height: auto;
@@ -773,7 +781,7 @@
                     </a>
                 </div>
             </div>
-            
+
         </footer>
     </main>
 
@@ -826,6 +834,28 @@
             tooltip.style.top = (y - 30) + 'px';
             tooltip.classList.add('visible');
             setTimeout(() => { tooltip.classList.remove('visible'); }, 2000);
+        }
+    </script>
+    <script>
+        // MOBILE MENU TOGGLE
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileLinks = mobileMenu ? mobileMenu.querySelectorAll('a') : [];
+
+        if (hamburgerBtn && mobileMenu) {
+            hamburgerBtn.addEventListener('click', () => {
+                hamburgerBtn.classList.toggle('active');
+                mobileMenu.classList.toggle('active');
+                document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+            });
+
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburgerBtn.classList.remove('active');
+                    mobileMenu.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+            });
         }
     </script>
 </body>
