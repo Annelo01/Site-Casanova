@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 
 <head>
@@ -354,7 +354,7 @@
             height: 100%;
             object-fit: cover;
             z-index: -1;
-            opacity: 0.25;
+            opacity:   0.6;
             /* Further reduced opacity as requested */
         }
 
@@ -450,7 +450,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: #D4AF6A;
+            background-color: var(--white);
         }
 
         .manifesto-bg-image {
@@ -461,7 +461,7 @@
             height: 100%;
             object-fit: cover;
             z-index: 0;
-            opacity: 0.3;
+            opacity: 0.75;
         }
 
         .manifesto-content {
@@ -475,7 +475,7 @@
             font-size: 32px;
             font-weight: 700;
             line-height: 1.2;
-            color: var(--white);
+            color: var(--black);
             text-transform: none;
 
             /* Animation Initiale */
@@ -492,13 +492,13 @@
 
         .serif-italic {
             font-family: var(--font-serif) !important;
-            font-style: italic;
+            font-style: normal;
             font-weight: 400;
         }
 
         .serif-italic-underline {
             font-family: var(--font-serif) !important;
-            font-style: italic;
+            font-style: normal;
             text-decoration: underline;
             text-underline-offset: 6px;
             font-weight: 400;
@@ -1206,7 +1206,7 @@
             if (headerVideo) headerVideo.playbackRate = 0.3;
 
             const productInfoVideo = document.querySelector('.product-info-bg-video');
-            if (productInfoVideo) productInfoVideo.playbackRate = 0.1; // Keep cloud slow? User didn't specify, but "remets la" implies just restore. Slow is fine.
+            if (productInfoVideo) productInfoVideo.playbackRate =  0.5; // Keep cloud slow? User didn't specify, but "remets la" implies just restore. Slow is fine.
 
             const footerVideo = document.querySelector('.footer-bg-video');
             if (footerVideo) footervideo.playbackRate = 0.8;

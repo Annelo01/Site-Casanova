@@ -320,7 +320,7 @@
             height: 100%;
             object-fit: cover;
             z-index: -1;
-            opacity: 0.25;
+            opacity:    0.6;
         }
 
         .product-title {
@@ -408,7 +408,7 @@
             background-color: transparent;
         }
 
-        .manifesto-bg-video {
+        .manifesto-bg-image {
             position: absolute;
             top: 0;
             left: 0;
@@ -416,7 +416,7 @@
             height: 100%;
             object-fit: cover;
             z-index: 0;
-            filter: contrast(1.1) saturate(1.3);
+            opacity: 1;
         }
 
         .manifesto-content {
@@ -812,9 +812,8 @@
         </section>
 
         <section class="product-manifesto">
-            <video autoplay muted loop playsinline class="manifesto-bg-video">
-                <source src="./assets/vid/AURORE CASANOVA 05.mp4" type="video/mp4">
-            </video>
+            <img src="assets/img/fond-page-produit-coteaux-mesnil-champenois.jpg" alt="Background Texture"
+                class="manifesto-bg-image">
             <div class="manifesto-content">
                 <p>Information coming soon</p>
             </div>

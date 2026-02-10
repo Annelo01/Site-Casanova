@@ -260,7 +260,7 @@
             height: 100%;
             object-fit: cover;
             z-index: -1;
-            opacity: 0.25;
+            opacity:   0.6;
         }
 
         .product-title {
@@ -345,7 +345,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: #D4AF6A;
+            background-color: var(--white);
         }
 
         .manifesto-bg-image {
@@ -356,7 +356,7 @@
             height: 100%;
             object-fit: cover;
             z-index: 0;
-            opacity: 0.3;
+            opacity: 0.75;
         }
 
         .manifesto-content {
@@ -370,7 +370,7 @@
             font-size: 32px;
             font-weight: 700;
             line-height: 1.2;
-            color: var(--white);
+            color: var(--black);
             text-transform: none;
             opacity: 0;
             transform: translateY(30px);
@@ -893,7 +893,7 @@
             const headerVideo = document.querySelector('.header-bg-video');
             if (headerVideo) headerVideo.playbackRate = 0.3;
             const productInfoVideo = document.querySelector('.product-info-bg-video');
-            if (productInfoVideo) productInfoVideo.playbackRate = 0.1;
+            if (productInfoVideo) productInfoVideo.playbackRate =  0.5;
         });
 
         function copyEmail(e, email) {

@@ -158,6 +158,17 @@
             filter: brightness(0.4);
         }
 
+        .manifesto-bg-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+            opacity: 1;
+        }
+
         .logo {
             position: relative;
             z-index: 2;
@@ -321,7 +332,7 @@
             height: 100%;
             object-fit: cover;
             z-index: -1;
-            opacity: 0.25;
+            opacity:    0.6;
         }
 
         .product-title {
@@ -813,9 +824,8 @@
         </section>
 
         <section class="product-manifesto">
-            <video autoplay muted loop playsinline class="manifesto-bg-video">
-                <source src="./assets/vid/AURORE CASANOVA 05.mp4" type="video/mp4">
-            </video>
+            <img src="assets/img/fond-page-produit-coteaux-puisieulx.jpg" alt="Background Texture"
+                class="manifesto-bg-image">
             <div class="manifesto-content">
                 <p>Information coming soon</p>
             </div>

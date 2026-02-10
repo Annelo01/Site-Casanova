@@ -355,7 +355,7 @@
             height: 100%;
             object-fit: cover;
             z-index: -1;
-            opacity: 0.25;
+            opacity:    0.6;
             /* Further reduced opacity as requested */
         }
 
@@ -475,13 +475,14 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            /* Semi-transparent black overlay */
+            background-color: transparent;
+            /* Semi-transparent black overlay removed */
             z-index: 0;
             /* Between video and content */
         }
 
         .manifesto-content {
+            position: relative;
             max-width: 1000px;
             z-index: 1;
             padding: 20px;
@@ -1218,7 +1219,7 @@
             if (headerVideo) headerVideo.playbackRate = 0.3;
 
             const productInfoVideo = document.querySelector('.product-info-bg-video');
-            if (productInfoVideo) productInfoVideo.playbackRate = 0.1; // Keep cloud slow? User didn't specify, but "remets la" implies just restore. Slow is fine.
+            if (productInfoVideo) productInfoVideo.playbackRate =  0.5; // Keep cloud slow? User didn't specify, but "remets la" implies just restore. Slow is fine.
 
             const footerVideo = document.querySelector('.footer-bg-video');
             if (footerVideo) footervideo.playbackRate = 0.8;
