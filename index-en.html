@@ -820,11 +820,31 @@
             }
 
             .split-section {
-                flex-direction: column;
+                flex-direction: column !important;
+                height: auto !important;
+                display: block !important;
             }
 
             .split-col {
-                width: 100%;
+                width: 100% !important;
+                height: auto !important;
+                min-height: 0 !important;
+                position: relative !important;
+                overflow: visible !important;
+            }
+
+            .split-image {
+                position: relative !important;
+                display: block !important;
+                width: 100% !important;
+                height: 450px !important;
+                object-fit: cover !important;
+                top: auto !important;
+                left: auto !important;
+            }
+
+            .split-content {
+                padding: 60px 20px !important;
             }
 
             .footer-bottom {
@@ -850,7 +870,7 @@
             <ul>
                 <li><a href="#history">HISTORY</a></li>
                 <li><a href="wines.html">CHAMPAGNES & WINES</a></li>
-                <li><a href="#contact">CONTACT</a></li>
+                <li><a href="contact-en.html">CONTACT</a></li>
                 <li><a href="index.html">FR</a></li>
             </ul>
         </div>
@@ -860,7 +880,7 @@
             <ul>
                 <li><a href="#history">HISTORY</a></li>
                 <li><a href="wines.html">CHAMPAGNES & WINES</a></li>
-                <li><a href="#contact">CONTACT</a></li>
+                <li><a href="contact-en.html">CONTACT</a></li>
                 <li><a href="index.html" class="lang-switch">FR</a></li>
             </ul>
         </nav>
@@ -1033,7 +1053,7 @@
     </div>
 
     <!-- FOOTER / CONTACT -->
-    <footer id="contact">
+    <footer id="footer-section">
         <video autoplay muted loop playsinline class="footer-bg-video">
             <source src="assets/vid/aurore-casanova-07.mov" type="video/quicktime">
             <source src="assets/vid/aurore-casanova-07.mp4" type="video/mp4">
