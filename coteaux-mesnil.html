@@ -567,6 +567,19 @@
             fill: currentColor;
         }
 
+        .footer-socials svg {
+            height: 24px;
+            width: auto;
+            opacity: 1;
+            transition: transform 0.3s;
+            color: var(--white);
+            fill: currentColor;
+        }
+
+        .footer-socials a:hover svg {
+            transform: translateY(-3px);
+        }
+
         .footer-bottom {
             position: absolute;
             bottom: 40px;
@@ -672,8 +685,7 @@
     <main>
         <section class="product-hero">
             <div class="product-image-side">
-                <img src="assets/img/coteaux-mesnil.png"
-                    alt="COTEAUX MESNIL SUR OGER">
+                <img src="assets/img/coteaux-mesnil.png" alt="COTEAUX MESNIL SUR OGER">
             </div>
             <div class="product-info-side">
                 <video autoplay muted loop playsinline class="product-info-bg-video">
@@ -681,35 +693,35 @@
                     <source src="assets/vid/aurore-casanova-01.mov" type="video/quicktime">
                 </video>
                 <h1 class="product-title">MESNIL SUR OGER</h1>
-                <p class="product-subtitle">Informations � venir</p>
-                <p class="product-description">Informations � venir</p>
+                <p class="product-subtitle">Informations à venir</p>
+                <p class="product-description">Informations à venir</p>
             </div>
         </section>
 
         <section class="product-details">
             <div class="detail-item">
-                <h3 class="detail-title">C�PAGES</h3>
-                <p class="detail-content">Informations � venir</p>
+                <h3 class="detail-title">CÉPAGES</h3>
+                <p class="detail-content">Informations à venir</p>
             </div>
             <div class="detail-item">
-                <h3 class="detail-title">�LEVAGE</h3>
-                <p class="detail-content">Informations � venir</p>
+                <h3 class="detail-title">ÉLEVAGE</h3>
+                <p class="detail-content">Informations à venir</p>
             </div>
             <div class="detail-item">
                 <h3 class="detail-title">VINIFICATION</h3>
-                <p class="detail-content">Informations � venir</p>
+                <p class="detail-content">Informations à venir</p>
             </div>
             <div class="detail-item">
-                <h3 class="detail-title">�LEVAGE EN BOUTEILLE</h3>
-                <p class="detail-content">Informations � venir</p>
+                <h3 class="detail-title">ÉLEVAGE EN BOUTEILLE</h3>
+                <p class="detail-content">Informations à venir</p>
             </div>
             <div class="detail-item">
                 <h3 class="detail-title">DOSAGE</h3>
-                <p class="detail-content">Informations � venir</p>
+                <p class="detail-content">Informations à venir</p>
             </div>
             <div class="detail-item">
                 <h3 class="detail-title">FICHE TECHNIQUE</h3>
-                <p class="detail-content"><a href="#" style="text-decoration: underline;">T�L�CHARGER</a></p>
+                <p class="detail-content"><a href="#" style="text-decoration: underline;">TÉLÉCHARGER</a></p>
             </div>
         </section>
 
@@ -718,18 +730,18 @@
                 <source src="./assets/vid/AURORE CASANOVA 05.mp4" type="video/mp4">
             </video>
             <div class="manifesto-content">
-                <p>Informations � venir</p>
+                <p>Informations à venir</p>
             </div>
         </section>
 
         <section class="usage-grid">
             <div class="usage-item">
-                <h3 class="usage-title">D�GUSTATION</h3>
-                <p class="usage-content">Informations � venir</p>
+                <h3 class="usage-title">DÉGUSTATION</h3>
+                <p class="usage-content">Informations à venir</p>
             </div>
             <div class="usage-item">
                 <h3 class="usage-title">ACCORDS</h3>
-                <p class="usage-content">Informations � venir</p>
+                <p class="usage-content">Informations à venir</p>
             </div>
         </section>
 
@@ -737,7 +749,7 @@
         <section class="bottle-marquee">
             <div class="marquee-wrapper">
                 <div class="marquee-track" id="bottle-marquee-track">
-                    <!-- Les bouteilles seront ins�r�es ici par JS -->
+                    <!-- Les bouteilles seront insérées ici par JS -->
                 </div>
             </div>
         </section>
@@ -749,7 +761,7 @@
             <div class="footer-content">
                 <img src="assets/img/logo svg footpage.svg" alt="Aurore Casanova Champagne" class="footer-heart-logo">
                 <div class="footer-address">
-                    13 rue Jean Jaur�s,<br>
+                    13 rue Jean Jaurès,<br>
                     51530 Mardeuil<br>
                     FRANCE
                 </div>
@@ -778,15 +790,15 @@
                     </a>
                 </div>
             </div>
-            
+
         </footer>
     </main>
 
     <script>
         // Data for the bottle marquee
         const products = [
-            { name: "AURE", category: "CUV�E", img: "assets/img/aure.png", link: "aure.html" },
-            { name: "ROSE", category: "CUV�E", img: "assets/img/rose.png", link: "rose.html" },
+            { name: "AURE", category: "CUVÉE", img: "assets/img/aure.png", link: "aure.html" },
+            { name: "ROSE", category: "CUVÉE", img: "assets/img/rose.png", link: "rose.html" },
             { name: "MESNIL SUR OGER", category: "PARCELLAIRE", img: "assets/img/parcellaire-mesnil.png", link: "mesnil.html" },
             { name: "PUISIEULX CHARDONNAY", category: "PARCELLAIRE", img: "assets/img/parcellaire-chardo.png", link: "puisieulx-chardonnay.html" },
             { name: "PINOT NOIR", category: "PARCELLAIRE", img: "assets/img/parcellaire-pinot.png", link: "puisieulx-pinot-noir.html" },
@@ -845,7 +857,7 @@
             if (!tooltip) {
                 tooltip = document.createElement('div');
                 tooltip.className = 'copy-tooltip';
-                tooltip.textContent = 'EMAIL COPI� !';
+                tooltip.textContent = 'EMAIL COPIÉ !';
                 document.body.appendChild(tooltip);
             }
             tooltip.style.left = (x + 15) + 'px';
@@ -857,7 +869,3 @@
 </body>
 
 </html>
-
-
-
-
